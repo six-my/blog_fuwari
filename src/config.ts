@@ -8,9 +8,9 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "Fuwari",
-	subtitle: "Demo Site",
-	lang: "en", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
+	title: "six-my", //你的博客主标题
+	subtitle: "或许从未有过如此的地步.", //你的博客副标题,可选，在首页会显示为“主标题 - 副标题”
+	lang: "zh_CN", // 博客显示语言,Language code, e.g. 'en', 'zh_CN', 'ja', etc.
 	themeColor: {
 		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
 		fixed: false, // Hide the theme color picker for visitors
@@ -30,49 +30,46 @@ export const siteConfig: SiteConfig = {
 		depth: 2, // Maximum heading depth to show in the table, from 1 to 3
 	},
 	favicon: [
+		//网站图标
 		// Leave this array empty to use the default favicon
-		// {
-		//   src: '/favicon/icon.png',    // Path of the favicon, relative to the /public directory
-		//   theme: 'light',              // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
-		//   sizes: '32x32',              // (Optional) Size of the favicon, set only if you have favicons of different sizes
-		// }
+		//将此数组留空以使用默认图标
+		{
+			src: "/favicon/icon.png", // Path of the favicon, relative to the /public directory
+			theme: "light", // (Optional) Either 'light' or 'dark', set only if you have different favicons for light and dark mode
+			sizes: "32x32", // (Optional) Size of the favicon, set only if you have favicons of different sizes
+		},
 	],
 };
 
 export const navBarConfig: NavBarConfig = {
+	//导航栏设置的超链接
 	links: [
 		LinkPreset.Home,
 		LinkPreset.Archive,
 		LinkPreset.About,
 		{
 			name: "GitHub",
-			url: "https://github.com/saicaca/fuwari", // Internal links should not include the base path, as it is automatically added
+			url: "https://github.com/six-my", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 	],
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/demo-avatar.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-	name: "Lorem Ipsum",
-	bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+	//你的用户的超链接
+	avatar: "assets/images/demo-avatar.png", // 你的头像 Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	name: "six-my", //你的名字
+	bio: "或许从未有过如此的地步.", //个性签名
 	links: [
-		{
-			name: "Twitter",
-			icon: "fa6-brands:twitter", // Visit https://icones.js.org/ for icon codes
-			// You will need to install the corresponding icon set if it's not already included
-			// `pnpm add @iconify-json/<icon-set-name>`
-			url: "https://twitter.com",
-		},
-		{
-			name: "Steam",
-			icon: "fa6-brands:steam",
-			url: "https://store.steampowered.com",
-		},
 		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
-			url: "https://github.com/saicaca/fuwari",
+			url: "https://github.com/six-my",
+		},
+		{
+			name: "mail",
+			icon: "material-symbols:mail-rounded",
+			url: "mailto:six.my.2024@gmail.com",
 		},
 	],
 };
