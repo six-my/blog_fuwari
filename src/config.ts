@@ -88,7 +88,7 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 
 export const commentConfig: CommentConfig = {
 	twikoo: {
-		envId: "https://twikoo-sepia-eta.vercel.app",
+		envId: "https://blogtwikoo.sixmy.dpdns.org",
 		lang: "zh-CN",
 	},
 };
