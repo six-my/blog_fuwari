@@ -368,13 +368,7 @@ function init() {
 	loadTheme();
 	loadHue();
 	initCustomScrollbar();
-	initCommentComponent();
 	showBanner();
-}
-
-function initCommentComponent() {
-  const event = new Event("loadComment");
-  document.dispatchEvent(event);
 }
 
 /* Load settings when entering the site */
@@ -560,7 +554,6 @@ const setup = () => {
 		"content:replace",
 		() => {
 			lightbox?.destroy?.()
-			initCommentComponent();
 		},
 		{ before: true },
 	)
