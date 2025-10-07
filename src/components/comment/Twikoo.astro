@@ -1,4 +1,5 @@
 ---
+import WidgetLayout from "@components/widget/WidgetLayout.astro";
 import { commentConfig } from "@/config";
 
 interface Props {
@@ -11,8 +12,10 @@ const config = {
 	path: Astro.props.path,
 };
 ---
-
+<WidgetLayout name={i18n(I18nKey.comments)} id="comments">
 <div id="tcomment"></div>
+</WidgetLayout>
+
 <script is:inline src="https://cdn.staticfile.org/twikoo/1.6.44/twikoo.all.min.js"></script>
 <script is:inline define:vars={{ config }}>
   twikoo.init(config)
