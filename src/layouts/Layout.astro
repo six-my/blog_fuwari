@@ -368,7 +368,6 @@ function init() {
 	loadTheme();
 	loadHue();
 	initCustomScrollbar();
-	initCommentComponent();
 	showBanner();
 }
 
@@ -555,7 +554,6 @@ const setup = () => {
 		"content:replace",
 		() => {
 			lightbox?.destroy?.()
-			initCommentComponent();
 		},
 		{ before: true },
 	)
