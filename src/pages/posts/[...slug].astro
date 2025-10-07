@@ -13,10 +13,6 @@ import ImageWrapper from "../../components/misc/ImageWrapper.astro";
 import PostMetadata from "../../components/PostMeta.astro";
 import { profileConfig, siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
-import Comment from "@components/comment/index.astro"  // twikoo评论
-
-    <Comment post={entry}></Comment>
-    <!-- twikoo评论 -->
 
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();

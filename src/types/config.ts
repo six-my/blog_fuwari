@@ -82,18 +82,6 @@ export type LIGHT_DARK_MODE =
 	| typeof DARK_MODE
 	| typeof AUTO_MODE;
 
-  // twikoo评论
-  export type CommentConfig = {
-    twikoo?: TwikooConfig
-  }
-
-    type TwikooConfig = {
-    envId: string
-    region?: string
-    lang?: string
-    }
-  // twikoo评论结束
-
 export type BlogPostData = {
 	body: string;
 	title: string;
