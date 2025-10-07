@@ -15,12 +15,12 @@ const config = {
   function loadTwikoo() {
     const script = document.createElement("script");
     script.src =
-      "https://twikoo-nu-six-37.vercel.app/twikoo.min.js";
+      "https://blogtwikoo.sixmy.dpdns.org/twikoo.min.js";
     script.defer = true;
     script.onload = () => {
       twikoo.init({
         ...config,
-        envId: "https://twikoo-nu-six-37.vercel.app", // 你的envId，获取方法请参照Twikoo文档
+        envId: "https://blogtwikoo.sixmy.dpdns.org", // 你的envId，获取方法请参照Twikoo文档
         lang: "zh-CN", // 评论区语言
       }); // 传入配置信息
     };
