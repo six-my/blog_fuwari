@@ -1,15 +1,15 @@
 ---
 title: Fuwari博客搭建和添加Twikoo评论
 published: 2025-10-07
-description: ''
-image: ''
+description: 关于Fuwari博客搭建和添加Twikoo评论
+image: ""
 tags:
   - 博客
   - Fuwari
   - Twikoo
-category: ''
-draft: false 
-lang: ''
+category: ""
+draft: false
+lang: ""
 ---
 
 ## 博客
@@ -624,7 +624,7 @@ envId这一项填写你的envId,非腾讯云环境的话就是 twikoo 后端服�
 
 修改src/pages/posts/[...slug].astro将 Twikoo 使用的页面路径引入.在顶部也要引入一下index.astro来加载 twikoo 等评论系统可显示的页面配置.
 
-```astro title="[...slug].astro" ins={3} {13-15}
+```astro title="[...slug].astro" ins={3,13-15}
 ---
 import path from "node:path";
 import Comment from "@components/comment/index.astro"; // twikoo评论
@@ -830,7 +830,7 @@ type TwikooConfig = {
 
 修改src/layouts/Layout.astro
 
-```astro title="src/layouts/Layout.astro" del={19} ins={1-7} {14} {20-24}
+```astro title="src/layouts/Layout.astro" del={19} ins={1-7,14,20-24}
 // 专用于创建loadComment的事件，即通知评论组件进行一次加载
 function initCommentComponent() {
   const event = new Event("loadComment");
@@ -866,7 +866,7 @@ function init() {
 
 HyperCherry的代码我不知道为什么会报错,import WidgetLayout from "@components/widget/WidgetLayout.astro";的引用没有效果.可能我是个废物吧.
 
-```css title="src/components/comment/Twikoo.astro" del={15} ins={2-4} {16} {18-19}
+```css title="src/components/comment/Twikoo.astro" del={15} ins={2-4,16,18-19}
 ---
 import WidgetLayout from "@components/widget/WidgetLayout.astro";
 import { commentConfig } from "@/config";
