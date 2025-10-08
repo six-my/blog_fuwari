@@ -1,0 +1,180 @@
+{
+  "main": {
+    "id": "59d852fc3149eee5",
+    "type": "split",
+    "children": [
+      {
+        "id": "193568b8849cf252",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f4cb6aad5b3681e0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Fuwari博客搭建.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "Fuwari博客搭建"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "0eeafcdf1b4e619b",
+    "type": "split",
+    "children": [
+      {
+        "id": "e5a3403e7262e4e4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "426fdb3bee961bb4",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "6ba0a01b91fd6a30",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "e17b635899e330a3",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "cc109a392afac278",
+    "type": "split",
+    "children": [
+      {
+        "id": "49db9e11f7551b58",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e99075e5da8ff894",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Fuwari博客搭建.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Fuwari博客搭建 的反向链接列表"
+            }
+          },
+          {
+            "id": "a53995d758c257b5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Fuwari博客搭建.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Fuwari博客搭建 的出链列表"
+            }
+          },
+          {
+            "id": "17913761f65a6e82",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "ac2dadbf47d86062",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Fuwari博客搭建.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Fuwari博客搭建 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:创建新数据库": false,
+      "i18n:I18N": false,
+      "file-cleaner-redux:清理文件": false,
+      "file-cleaner-redux:Clean files": false
+    }
+  },
+  "active": "f4cb6aad5b3681e0",
+  "lastOpenFiles": [
+    "关于我的博客.md",
+    "Fuwari博客搭建.md"
+  ]
+}
