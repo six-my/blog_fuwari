@@ -15,7 +15,7 @@
               "state": {
                 "file": "Fuwari博客搭建.md",
                 "mode": "source",
-                "source": true
+                "source": false
               },
               "icon": "lucide-file",
               "title": "Fuwari博客搭建"
@@ -168,13 +168,13 @@
       "command-palette:打开命令面板": false,
       "bases:创建新数据库": false,
       "i18n:I18N": false,
-      "file-cleaner-redux:清理文件": false,
-      "file-cleaner-redux:Clean files": false
+      "file-cleaner-redux:清理文件": false
     }
   },
   "active": "f4cb6aad5b3681e0",
   "lastOpenFiles": [
     "关于我的博客.md",
-    "Fuwari博客搭建.md"
+    "Fuwari博客搭建.md",
+    "2025-10-07.md"
   ]
 }

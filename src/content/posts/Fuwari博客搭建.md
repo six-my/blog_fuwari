@@ -20,7 +20,7 @@ lang: ""
 
 2.github帐号
 
-3.cloudflare
+3.cloudflare帐号
 
 折腾了这么久,博客和该死的评论终于弄完了.
 
@@ -32,7 +32,7 @@ Fuwari博客还算简单.
 
 ::github{repo="saicaca/fuwari"}
 
-这是fuwari的github仓库,点击fork(分叉仓库),Repository name(仓库名)随便,Description(介绍)随便,Copy the main branch only(仅复制主分支)不勾,点击Create fork.
+这是fuwari的github仓库,点击fork(分叉),Repository name(仓库名)随便,Description(介绍)随便,Copy the main branch only(仅复制主分支)不勾,点击Create fork.
 
 cmd运行
 
@@ -46,11 +46,189 @@ cd 你分叉的仓库的仓库名
 pnpm install(不要运行pnpm add sharp)
 ```
 
-....(此处省略,以后在写)
+### 改写Fuwari的基本信息
+
+我们先来改src/config.ts文件,这个文件算是基础设置吧
+
+```ts title="src/config.ts" 
+import type {
+	ExpressiveCodeConfig,
+	LicenseConfig,
+	NavBarConfig,
+	ProfileConfig,
+	SiteConfig,
+} from "./types/config";
+import { LinkPreset } from "./types/config";
+
+export const siteConfig: SiteConfig = {
+	title: "Fuwari",//你的博客主标题
+	subtitle: "Demo Site",//你的博客副标题.可选,在浏览器标签那里会显示为"主标题 - 副标题"
+	lang: "en", // 博客显示语言 'en', 'zh_CN', 'ja','ko'.
+	themeColor: {
+		hue: 250, //你的博客主题色，可以在你的博客右上角的画板图标确定喜欢的颜色再填写
+		fixed: false, // 为访客隐藏主题颜色选择器
+	},
+	banner: {
+		enable: false,//是否开启,如果要开启,请设置为true
+		src: "assets/images/demo-banner.png", //即banner图片，支持http/https URL,相对于/src目录。如果以'/'开头，相对于/public目录
+		position: "center", // 图片位置，仅支持 'top'、'center'、'bottom'。默认为 'center'
+		credit: {
+			enable: false, // 显示图片的版权文本
+			text: "", // 要显示的文本
+			url: "", // （可选）指向原始艺术品或艺术家页面的链接
+		},
+	},
+	toc: {
+		enable: true, // 在文章右侧显示大纲
+		depth: 2, // Maximum heading depth to show in the table, from 1 to 3
+	},
+	favicon: [//即网站图标，支持http/https URL
+		// 留空此数组以使用默认的favicon
+		// {
+		//   src: '/favicon/icon.png',    // favicon的路径，相对于/public目录
+		//   theme: 'light',              // （可选）'light' or 'dark'(“亮”或“暗”)，仅当您对亮模式和暗模式有不同的收藏夹图标时才设置
+		//   sizes: '32x32',              // （可选）favicon的大小，仅当您有不同大小的favicon时才设置
+		// }
+	],
+};
+
+export const navBarConfig: NavBarConfig = {//导航栏设置的超链接
+	links: [//这些链接在导航栏上,在关于右边 
+		LinkPreset.Home,
+		LinkPreset.Archive,
+		LinkPreset.About,
+		{
+			name: "GitHub",
+			url: "https://github.com/saicaca/fuwari", // 内部链接不应包含基本路径，因为它会自动添加
+			external: true, // 显示外部链接图标，并将在新选项卡中打开
+		},
+	],
+};
+
+export const profileConfig: ProfileConfig = {//你的用户的超链接
+	avatar: "assets/images/demo-avatar.png", // 相对于/src目录。如果以'/'开头，相对于/public目录
+	name: "Lorem Ipsum",//你的名字
+	bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",//即个性签名，会显示在头像和名字下面
+	links: [
+		{
+			name: "Twitter",
+			icon: "fa6-brands:twitter", // 访问 https://icones.js.org/ 获取图标代码
+      // 如果尚未包含，您需要安装相应的图标集
+      // `pnpm add @iconify-json/<图标集名称>`
+      //比如QQ，则填写 fa6-brands:qq ，如图。Fuwari默认支持这几种类型：fa6-brands, fa6-regular, fa6-solid, material-symbols。可以在 astro.config.mjs 中搜索关键字进行配置
+			url: "https://twitter.com",
+		},
+		{
+			name: "Steam",
+			icon: "fa6-brands:steam",
+			url: "https://store.steampowered.com",
+		},
+		{
+			name: "GitHub",
+			icon: "fa6-brands:github",
+			url: "https://github.com/saicaca/fuwari",
+		},
+	],
+};
+
+export const licenseConfig: LicenseConfig = {
+	enable: true,
+	name: "CC BY-NC-SA 4.0",
+	url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+};
+
+export const expressiveCodeConfig: ExpressiveCodeConfig = {
+	// Note: Some styles (such as background color) are being overridden, see the astro.config.mjs file.
+	// Please select a dark theme, as this blog theme currently only supports dark background color
+	theme: "github-dark",
+};
+
+```
+
+### 写作
+
+清理src/content/posts目录下的多余文件
+
+首先，在项目根目录执行：pnpm new-post <这里填写你的文章标题>
+
+然后，在根目录下的 src/content/posts 文件夹中会多出一个 xxx.md文件
+
+我们使用MarkText打开这个文件，你可以看到一些基本信息，我们只需要关注几个重要的信息
+
+```md title="xxx.md"
+---
+title: xxx
+published: 2024-10-14
+description: ''
+image: ''
+tags: []
+categories: ''
+draft: false
+lang: ''
+---
+title：文章标题
+published：文章创建时间
+description：文章描述，正常会显示在文章标题下面
+image：文章封面图（同目录需要写 ./ 如：./https://xxxx/myblog/img/2024-10-14-11-33-28-image.webp）
+tag：文章标签
+categories：文章分类
+draft: 是否为草稿
+lang: 文章语言,与src/config.ts中设置的不同的话要设置一下
+```
+
+更改根目录下的 astro.config.mjs 。在第34行更改 stie: 为你的站点URL，如： site: "https://blog.com"
+
+### 预览
+
+在项目根目录执行 **pnpm dev**
+
+### 发布
+
+设置用户名和邮箱
+
+```sh
+git config --global user.name "你的Github用户名"
+git config --global user.email "你的Github邮箱@example.com"
+```
+
+更改远程仓库为ssh*（如果是通过ssh克隆的不用改）
+
+```sh
+git remote set-url origin git@github.com:xxx/xxx
+```
+提交所有文件
+
+```sh
+git add .
+```
+
+让我们发布一个本地提交
+
+```sh
+git commit -m "项目初始化"
+```
+
+让我们将本地更改提交到远程仓库
+
+```sh
+git push
+```
+
+接下来我们用大善人Cloudflare来构建你的博客
+
+打开[Cloudflare](https://dash.cloudflare.com/),点击 **计算 (Workers)**，点击**创建应用程序**
+
+然后选择连接Git存储库，连接你的Github，随后设置构建命令：pnpm build ，然后设置构建输出目录：dist 
+
+绑定自定义域，访问自定义域即可访问你的博客！
+
+之后只需要写文章推送至github就行,大善人会帮你自动构建
 
 ### cloudflare部署玄学问题
 
-```log title="错误日志"
+前面写道大善人会帮你自动构建,但是会遇到玄学问题,构建会概率性出现问题,日志如下
+
+```log title="错误日志" collapse={1-99}
 2025-10-07T15:08:34.993563Z	Cloning repository...
 2025-10-07T15:08:35.722065Z	From https://github.com/six-my/blog_fuwari
 2025-10-07T15:08:35.72253Z	 * branch            2fd99e896043ced38bd6629f70b7580f8fb5c2e9 -> FETCH_HEAD
@@ -180,7 +358,7 @@ pnpm install(不要运行pnpm add sharp)
 2025-10-07T15:08:59.936642Z	Failed: error occurred while running build command
 ```
 
-```log title="正常日志"
+```log title="正常日志" collapse={1-201}
 2025-10-07T15:09:40.487126Z	Cloning repository...
 2025-10-07T15:09:41.197806Z	From https://github.com/six-my/blog_fuwari
 2025-10-07T15:09:41.198302Z	 * branch            2fd99e896043ced38bd6629f70b7580f8fb5c2e9 -> FETCH_HEAD
@@ -419,7 +597,11 @@ pnpm install(不要运行pnpm add sharp)
 
 接下来介绍使用twikoo给fuwari提供评论支持.
 
-[云函数部署](https://twikoo.js.org/backend.html#%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)这是官方的教程,可以理解成twikoo存储数据的方式.
+>参考链接
+>
+>[云函数部署](https://twikoo.js.org/backend.html#%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2)
+
+这是官方的教程,可以理解成twikoo存储数据的方式.
 
 大概分为docker和后端加数据库两种.
 
@@ -493,8 +675,24 @@ services:
 
 [Vercel 部署](https://twikoo.js.org/backend.html#vercel-%E9%83%A8%E7%BD%B2)
 
-```text
-申请 [MongoDB Atlas](https://twikoo.js.org/mongodb-atlas.html) 账号,获取 MongoDB 连接字符串
+#### MongoDB
+
+>参考链接:
+>
+>申请 [MongoDB Atlas](https://twikoo.js.org/mongodb-atlas.html) 账号,获取 MongoDB 连接字符串
+
+MongoDB Atlas 是 MongoDB Inc 提供的 MongoDB 数据库托管服务。免费账户可以永久使用 500 MiB 的数据库，足够存储 Twikoo 评论使用。
+
+申请 MongoDB AtLas 账号
+
+创建免费 MongoDB 数据库，区域推荐选择离 Twikoo 后端（Vercel / Netlify / AWS Lambda / VPS）地理位置较近的数据中心以获得更低的数据库连接延迟。如果不清楚自己的后端在哪个区域，也可选择 AWS / Oregon (us-west-2)，该数据中心基建成熟，故障率低，且使用 Oregon 州的清洁能源，较为环保
+
+在 Database Access(数据库访问) 页面点击 Add New Database User(添加新数据库用户) 创建数据库用户，Authentication Method(认证方式) 选 Password(密码)，在 Password Authentication(密码验证) 下设置数据库用户名和密码，建议点击 Auto Generate(自动生成) 自动生成一个不含特殊符号的强壮密码并妥善保存。点击 Database User Privileges(数据库用户权限) 下方的 Add Built In Role(添加内置角色)，Select Role (选择角色)选择 Read and write to any database(
+读取和写入任何数据库),也可以试试Specific Privileges(特定权限),最后点击 Add User(添加用户).
+
+在 Network Access(网络访问) 页面点击 Add IP Address(添加 IP 地址) 添加网络白名单。因为 Vercel / Netlify / Lambda 的出口地址不固定，因此 Access List Entry(访问列表条目) 输入 0.0.0.0/0（允许所有 IP 地址的连接）即可。如果 Twikoo 部署在自己的服务器上，这里可以填入固定 IP 地址。点击 Confirm 保存
+
+#### Vercel
 
 申请 [Vercel](https://vercel.com/signup) 账号
 
@@ -504,15 +702,19 @@ services:
 
 进入 Settings(设置) - Environment Variables(环境变量),添加环境变量 MONGODB_URI,值为前面记录的数据库连接字符串
 
-(默认的连接字符串没有指定数据库名称,Twikoo 会连接到默认的名为 test 的数据库.如果需要在同一个 MongoDB 里运行其他业务或供多个 Twikoo 实例使用,建立加入数据库名称并配置对应的 ACL.)
+默认的连接字符串没有指定数据库名称,Twikoo 会连接到默认的名为 test 的数据库.如果需要在同一个 MongoDB 里运行其他业务或供多个 Twikoo 实例使用,建立加入数据库名称并配置对应的 ACL.
 
-(mongodb+srv://<db_username>:<db_password>@cluster0.xxxx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0)
+```sh
+mongodb+srv://<db_username>:<db_password>@cluster0.xxxx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0)
+```
 
 上面这个就是默认的.
 
 如果要设置数据库名称则在cluster0.xxxx.mongodb.net/后面指定数据库名称,如下面的.
 
-(mongodb+srv://<db_username>:<db_password>@cluster0.xxxx.mongodb.net/twikoo_fuwari?retryWrites=true&w=majority&appName=Cluster0)
+```sh
+mongodb+srv://<db_username>:<db_password>@cluster0.xxxx.mongodb.net/twikoo_fuwari?retryWrites=true&w=majority&appName=Cluster0
+```
 
 进入 Settings(设置) - Deployment Protection(部署保护),设置 Vercel Authentication(Vercel身份验证) 为 Disabled(禁用),并 Save(保存)
 
@@ -521,7 +723,8 @@ services:
 进入 Overview(概览),点击 Domains(域名) 下方的链接,如果环境配置正确,可以看到 “Twikoo 云函数运行正常” 的提示
 
 Vercel Domains(域名)(包含 https:// 前缀,例如 https://xxx.vercel.app)即为您的环境 id
-```
+
+**这里提醒一下vercel的域名在国内无法访问,记得把域名换掉.**
 
 vercel是后端,vercel的项目域名是后面的envId,MongoDB是数据库,数据库连接字符串能让后端访问数据库.
 
@@ -605,29 +808,29 @@ if (commentConfig?.twikoo) {
 
 然后在 Fuwari 主题的配置文件src/config.ts中的最后添加下述代码来引入commentConfig加载配置：
 
-```ts title="src/config.ts" ins={6-12}
+```diff lang="ts" title="src/config.ts"
 export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	// Note: Some styles (such as background color) are being overridden, see the astro.config.mjs file.
 	// Please select a dark theme, as this blog theme currently only supports dark background color
 	theme: "github-dark",
 };
-
-export const commentConfig: CommentConfig = {
-	twikoo: {
-		envId: "https://xxx",//您的环境id
-		lang: "zh-CN",
-	},
-};
++
++export const commentConfig: CommentConfig = {
++	twikoo: {
++		envId: "https://xxx",//您的环境id
++		lang: "zh-CN",
++	},
++};
 ```
 
 envId这一项填写你的envId,非腾讯云环境的话就是 twikoo 后端服务的域名.
 
 修改src/pages/posts/[...slug].astro将 Twikoo 使用的页面路径引入.在顶部也要引入一下index.astro来加载 twikoo 等评论系统可显示的页面配置.
 
-```astro title="[...slug].astro" ins={3,13-15}
+```diff lang="astro" title="[...slug].astro" ins={3,13-15}
 ---
 import path from "node:path";
-import Comment from "@components/comment/index.astro"; // twikoo评论
++import Comment from "@components/comment/index.astro"; // twikoo评论
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
 import I18nKey from "@i18n/i18nKey";
@@ -637,9 +840,9 @@ import I18nKey from "@i18n/i18nKey";
         </div>
     </div>
 
-    <Comment post={entry}></Comment>
-    <!-- twikoo评论 -->
-
++    <Comment post={entry}></Comment>
++    <!-- twikoo评论 -->
++
     <div class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full">
         <a href={entry.data.nextSlug ? getPostUrlBySlug(entry.data.nextSlug) : "#"}
            class:list={["w-full font-bold overflow-hidden active:scale-95", {"pointer-events-none": !entry.data.nextSlug}]}>
@@ -647,23 +850,23 @@ import I18nKey from "@i18n/i18nKey";
 
 最后src/types/config.ts中加入
 
-```ts title="config.ts" ins={6-17}
+```diff lang="ts" title="config.ts"
 export type LIGHT_DARK_MODE =
 	| typeof LIGHT_MODE
 	| typeof DARK_MODE
 	| typeof AUTO_MODE;
 
-// twikoo评论
-export type CommentConfig = {
-	twikoo?: TwikooConfig;
-};
-
-type TwikooConfig = {
-	envId: string;
-	region?: string;
-	lang?: string;
-};
-// twikoo评论结束
++// twikoo评论
++export type CommentConfig = {
++	twikoo?: TwikooConfig;
++};
++
++type TwikooConfig = {
++	envId: string;
++	region?: string;
++	lang?: string;
++};
++// twikoo评论结束
 
 ```
 
@@ -675,7 +878,7 @@ type TwikooConfig = {
 
 新建src/styles/twikoo.css
 
-```css title="src/styles/twikoo.css"
+```css title="src/styles/twikoo.css" collapse={15-148}
 :root {
     --tk-text: black;
   }
@@ -830,31 +1033,31 @@ type TwikooConfig = {
 
 修改src/layouts/Layout.astro
 
-```astro title="src/layouts/Layout.astro" del={19} ins={1-7,14,20-24}
-// 专用于创建loadComment的事件，即通知评论组件进行一次加载
-function initCommentComponent() {
-  const event = new Event("loadComment");
-  document.dispatchEvent(event);
-}
-// twikoo评论
-
+```diff lang="astro" title="src/layouts/Layout.astro"
++// 专用于创建loadComment的事件，即通知评论组件进行一次加载
++function initCommentComponent() {
++  const event = new Event("loadComment");
++  document.dispatchEvent(event);
++}
++// twikoo评论
++
 function init() {
 	// disableAnimation()()		// TODO
 	loadTheme();
 	loadHue();
 	initCustomScrollbar();
 	showBanner();
-	initCommentComponent();  // 调用initCommentComponent()函数，twikoo
++	initCommentComponent();  // 调用initCommentComponent()函数，twikoo
 }
 
 ....
 
-	window.swup.hooks.on('content:replace', initCustomScrollbar)
-	// window.swup.hooks.on('content:replace', initCustomScrollbar)
-  	window.swup.hooks.on("content:replace", () => {
-    	initCustomScrollbar();
-    	initCommentComponent(); // 添加代码调用
-  	});
+-	window.swup.hooks.on('content:replace', initCustomScrollbar)
++	// window.swup.hooks.on('content:replace', initCustomScrollbar)
++  	window.swup.hooks.on("content:replace", () => {
++    	initCustomScrollbar();
++    	initCommentComponent(); // 添加代码调用
++  	});
 	window.swup.hooks.on('visit:start', (visit: {to: {url: string}}) => {
 		// change banner height immediately when a link is clicked
 		const bodyElement = document.querySelector('body')
@@ -866,11 +1069,11 @@ function init() {
 
 HyperCherry的代码我不知道为什么会报错,import WidgetLayout from "@components/widget/WidgetLayout.astro";的引用没有效果.可能我是个废物吧.
 
-```css title="src/components/comment/Twikoo.astro" del={15} ins={2-4,16,18-19}
+```diff lang="css" title="src/components/comment/Twikoo.astro"
 ---
-import WidgetLayout from "@components/widget/WidgetLayout.astro";
-import { commentConfig } from "@/config";
-import I18nKey from "@i18n/i18nKey";
++import WidgetLayout from "@components/widget/WidgetLayout.astro";
++import { commentConfig } from "@/config";
++import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 
 interface Props {
@@ -881,11 +1084,11 @@ interface Props {
 	path: Astro.props.path,
 };
 ---
-
-<WidgetLayout name={i18n(I18nKey.comments)} id="comments">
+-
++<WidgetLayout name={i18n(I18nKey.comments)} id="comments">
 <div id="tcomment"></div>
-</WidgetLayout>
-
++</WidgetLayout>
++
 <script is:inline src="https://cdn.staticfile.org/twikoo/1.6.44/twikoo.all.min.js"></script>
 <script is:inline define:vars={{ config }}>
   twikoo.init(config)
@@ -925,7 +1128,7 @@ js文件: 域名/twikoo.min.js
 
 修改src/components/comment/Twikoo.astro
 
-```astro title="src/components/comment/Twikoo.astro" del={21-23} ins={24-42}
+```diff lang="astro" title="src/components/comment/Twikoo.astro"
 ---
 import WidgetLayout from "@components/widget/WidgetLayout.astro";
 import I18nKey from "@i18n/i18nKey";
@@ -946,28 +1149,28 @@ const config = {
 <div id="tcomment"></div>
 </WidgetLayout>
 
-<script is:inline src="https://cdn.staticfile.org/twikoo/1.6.44/twikoo.all.min.js"></script>
-<script is:inline define:vars={{ config }}>
-  twikoo.init(config)
-<script define:vars={{ config }}>
-function loadTwikoo() {
-
-  // 动态加载 Twikoo 脚本,并在加载完成后执行 twikoo.init
-
-  const script = document.createElement('script');
-  script.src = 'https://xxx/twikoo.min.js';//js文件
-  script.defer = true;
-  script.onload = () => {
-    if (window.twikoo) {
-      window.twikoo.init(config);
-    }
-  };
-  // script.onerror = () => {
-  //   console.error('Twikoo script load failed');
-  // };
-  document.body.appendChild(script);
-}
-  document.addEventListener("loadComment", loadTwikoo, { once: true }); // 监听加载评论事件,但是我们只能监听一次,从而避免多次触发.
+-<script is:inline src="https://cdn.staticfile.org/twikoo/1.6.44/twikoo.all.min.js"></script>
+-<script is:inline define:vars={{ config }}>
+-  twikoo.init(config)
++<script define:vars={{ config }}>
++function loadTwikoo() {
++
++  // 动态加载 Twikoo 脚本,并在加载完成后执行 twikoo.init
++
++  const script = document.createElement('script');
++  script.src = 'https://xxx/twikoo.min.js';//js文件
++  script.defer = true;
++  script.onload = () => {
++    if (window.twikoo) {
++      window.twikoo.init(config);
++    }
++  };
++  // script.onerror = () => {
++  //   console.error('Twikoo script load failed');
++  // };
++  document.body.appendChild(script);
++}
++  document.addEventListener("loadComment", loadTwikoo, { once: true }); // 监听加载评论事件,但是我们只能监听一次,从而避免多次触发.
 </script>
 ```
 
@@ -979,3 +1182,73 @@ function loadTwikoo() {
 
 网址:点击之后会跳转的网址
 
+### Twikoo 管理面板
+
+#### 通用
+SITE_NAME xxx&blog 网站名称
+SITE_URL https://blog.org 网站地址
+CORS_ALLOW_ORIGIN CORS 安全域名，注意：如果您不了解什么是 CORS，此项请留空，错误设置会导致无法加载，默认为空，格式为 https://blog.example.com；如需添加多域名请使用,分隔
+BLOGGER_NICK xxx 博主的昵称。
+BLOGGER_EMAIL xxx@gmail.com 博主的邮箱地址，用于邮件通知、博主标识。
+COMMENT_PAGE_SIZE 评论列表分页大小，默认为 8。
+MASTER_TAG 博主标识自定义文字，默认为 “博主”。
+COMMENT_BG_IMG 评论框自定义背景图片 URL 地址。
+GRAVATAR_CDN 自定义头像 CDN 地址。如：cn.gravatar.com, weavatar.com, cravatar.cn, sdn.geekzu.org, gravatar.loli.net，默认：weavatar.com
+DEFAULT_GRAVATAR identicon 默认的头像显示。默认值（留空）为 "initials"，可选："404"、"mp"、"identicon"、"monsterid"、"wavatar"、"retro"、"robohash"、"blank"
+COMMENT_PLACEHOLDER 可以到weavatar.com注册账号,输入 Email 可以在评论中显示头像. 评论框提示信息，可用<br>换行，默认为空
+DISPLAYED_FIELDS 界面上展示的输入框，默认：nick,mail,link
+REQUIRED_FIELDS 评论必填信息，设为 nick,mail,link 代表全必填，设为 none 代表全选填，默认：nick,mail
+HIDE_ADMIN_CRYPT 隐藏管理面板入口。可设置一个“暗号”，只有在“昵称”一栏输入相同的“暗号”时，管理面板入口才会显示，留空则不隐藏管理入口
+
+#### 插件
+SHOW_IMAGE false 启用插入图片功能，默认为：true
+IMAGE_CDN 插入图片所使用的图床，目前支持："qcloud"、"7bu (https://7bu.top)"、"smms (https://sm.ms)"、"lskypro"、"piclist"、"easyimage"
+IMAGE_CDN_URL 图床的 URL，仅当 IMAGE_CDN 为 "lskypro" / "piclist" / "easyimage" 时需要填写
+IMAGE_CDN_TOKEN 图床 token。qcloud 图床无需设置
+SHOW_EMOTION 启用插入表情功能，默认为：true
+EMOTION_CDN https://blog.mcxiaochen.top/json/owo.json 表情 CDN，英文逗号分隔。默认为：https://owo.imaegoo.com/owo.json
+HIGHLIGHT 启用代码高亮功能。如果您的主题和代码高亮有冲突，请设为 false。默认：true
+HIGHLIGHT_THEME 代码高亮主题，可选："default"、"coy"、"dark"、"funky"、"okaidia"、"solarizedlight"、"tomorrow"、"twilight"，访问 https://prismjs.com 可预览主题效果。如果您的主题和代码高亮有冲突，请设为 none。默认：none
+HIGHLIGHT_PLUGIN 代码高亮插件，可选："showLanguage"、"copyButton"，分别表示：展示代码语言、展示代码拷贝按钮。可以同时设置多个选项，如果想要不添加任何代码高亮插件，请设为 none。默认：none。
+LIGHTBOX 使用简易图片点击放大效果。默认：false
+
+#### 隐私
+SHOW_UA 是否显示用户系统和浏览器，默认为：true
+SHOW_REGION 是否显示用户 IP 属地到省，可能不准确，不支持 IPv6，默认为：false
+
+#### 反垃圾
+AKISMET_KEY Akismet 反垃圾评论，用于垃圾评论检测，设为 "MANUAL_REVIEW" 开启人工审核，留空不使用反垃圾。注册：https://akismet.com
+QCLOUD_SECRET_ID 腾讯云 secret id，用于垃圾评论检测。同时设置腾讯云和 Akismet 时，只有腾讯云会生效。注册：https://twikoo.js.org/cms.html
+QCLOUD_SECRET_KEY 腾讯云 secret key
+QCLOUD_CMS_BIZTYPE 腾讯云内容安全 Biztype 名称，用于垃圾评论策略。可以自定义垃圾拦截规则
+LIMIT_PER_MINUTE 单个 IP 发言频率限制（条/10分钟），0 为无限制，默认：10
+LIMIT_PER_MINUTE_ALL 全站发言频率限制（条/10分钟），0 为无限制，默认：10
+LIMIT_LENGTH 评论长度限制，0 为无限制，默认：500
+FORBIDDEN_WORDS 违禁词配置，包含违禁词的内容会直接标记为垃圾评论。英文逗号分隔。
+BLOCKED_WORDS 屏蔽词配置，包含屏蔽词的内容会直接评论失败。英文逗号分隔。
+NOTIFY_SPAM 垃圾评论是否发送通知，默认：true
+TURNSTILE_SITE_KEY Turnstile 验证码的站点密钥。申请地址: https://dash.cloudflare.com/?to=/:account/turnstile
+TURNSTILE_SECRET_KEY Turnstile 验证码的密钥
+
+#### 即时通知
+PUSHOO_CHANNEL 即时消息推送平台名称，支持："qmsg"、"serverchan"、"pushplus"、"pushplushxtrip"、"dingtalk"、"wecom"、"bark"、"gocqhttp"、"atri"、"pushdeer"、"igot"、"telegram"、"feishu" 等
+PUSHOO_TOKEN 即时消息推送 token。请参考 https://pushoo.js.org 里的详细说明配置
+SC_MAIL_NOTIFY 是否同时通过 IM 和邮件 2 种方式通知博主，默认只通过 IM 通知博主，默认：false
+
+#### 邮件通知
+SENDER_EMAIL xxxxxxxx@qq.com 邮件通知邮箱地址。对于大多数邮箱服务商，SENDER_EMAIL 必须和 SMTP_USER 保持一致，否则无法发送邮件。
+SENDER_NAME sixmy blog 通知提醒 邮件通知标题。
+SMTP_SERVICE QQ 邮件通知邮箱服务商。支持："126"、"163"、"1und1"、"AOL"、"DebugMail"、"DynectEmail"、"FastMail"、"GandiMail"、"Gmail"、"Godaddy"、"GodaddyAsia"、"GodaddyEurope"、"Hotmail"、"Mail.ru"、"Maildev"、"Mailgun"、"Mailjet"、"Mailosaur"、"Mandrill"、"Naver"、"OpenMailBox"、"Outlook365"、"Postmark"、"QQ"、"QQex"、"SES"、"SES-EU-WEST-1"、"SES-US-EAST-1"、"SES-US-WEST-2"、"SendCloud"、"SendGrid"、"SendPulse"、"SendinBlue"、"Sparkpost"、"Yahoo"、"Yandex"、"Zoho"、"hot.ee"、"iCloud"、"mail.ee"、"qiye.aliyun"
+SMTP_HOST 自定义 SMTP 服务器地址。如您已配置 SMTP_SERVICE，此项请留空。
+SMTP_PORT 自定义 SMTP 端口。如您已配置 SMTP_SERVICE，此项请留空。
+SMTP_SECURE 自定义 SMTP 是否使用TLS，请填写 true 或 false。如您已配置 SMTP_SERVICE，此项请留空。
+SMTP_USER xxxxxxxx@qq.com 邮件通知邮箱用户名。
+SMTP_PASS xxxxx 邮件通知邮箱密码，QQ、163邮箱请填写授权码。
+MAIL_SUBJECT 自定义通知邮件主题，留空则使用默认主题。
+MAIL_TEMPLATE 自定义通知邮件模板，留空则使用默认模板。可包含的字段：${SITE_URL}, ${SITE_NAME}, ${PARENT_NICK}, ${PARENT_COMMENT}, ${NICK}, ${COMMENT}, ${POST_URL}, ${IMG}, ${PARENT_IMG}
+MAIL_SUBJECT_ADMIN 自定义博主通知邮件主题，留空则使用默认主题。
+MAIL_TEMPLATE_ADMIN 自定义博主通知邮件模板，留空则使用默认模板。可包含的字段：${SITE_URL}, ${SITE_NAME}, ${NICK}, ${COMMENT}, ${POST_URL}, ${IP}, ${MAIL}, ${IMG}
+
+懒得写了,配置复制粘贴到这了.
+
+自定义通知邮件模板,自定义博主通知邮件模板用的[Zokiio](https://blog.tantalum.life/posts/add-comments-to-fuwari-with-twikoo/)的.
