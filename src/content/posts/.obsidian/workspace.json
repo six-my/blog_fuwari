@@ -14,14 +14,29 @@
               "type": "markdown",
               "state": {
                 "file": "Fuwari博客搭建.md",
-                "mode": "source",
-                "source": false
+                "mode": "preview",
+                "source": true
               },
               "icon": "lucide-file",
               "title": "Fuwari博客搭建"
             }
+          },
+          {
+            "id": "bddfa7e9134bf7ac",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "windows10停止支持.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "windows10停止支持"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -171,10 +186,12 @@
       "file-cleaner-redux:清理文件": false
     }
   },
-  "active": "f4cb6aad5b3681e0",
+  "active": "bddfa7e9134bf7ac",
   "lastOpenFiles": [
     "关于我的博客.md",
     "Fuwari博客搭建.md",
+    "windows10停止支持.md",
+    "未命名.md",
     "2025-10-07.md"
   ]
 }
