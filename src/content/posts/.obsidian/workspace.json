@@ -8,20 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "f4cb6aad5b3681e0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Fuwari博客搭建.md",
-                "mode": "preview",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "Fuwari博客搭建"
-            }
-          },
-          {
             "id": "bddfa7e9134bf7ac",
             "type": "leaf",
             "state": {
@@ -35,8 +21,7 @@
               "title": "dns和私有dns"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -188,9 +173,9 @@
   },
   "active": "bddfa7e9134bf7ac",
   "lastOpenFiles": [
-    "windows10停止支持.md",
-    "dns和私有dns.md",
     "Fuwari博客搭建.md",
+    "dns和私有dns.md",
+    "windows10停止支持.md",
     "关于我的博客.md",
     "未命名.md",
     "2025-10-07.md"

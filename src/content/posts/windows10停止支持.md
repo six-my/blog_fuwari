@@ -66,3 +66,40 @@ windows10还能启用Windows 10 扩展安全更新程序
 跟据上面可以看出windows10目前还有LTSC没有停止支持.
 
 [^1]: Windows 10 企业版 LTSC 2021 版（版本 21H2）不具有扩展支持。服务将于 2027 年 1 月 12 日终止。2032 年 1 月 13 日之前，将仅向 Windows 10 IoT 企业版 LTSC 2021（版本 21H2）提供支持。
+
+
+....2025.10.18
+
+目前windows10官网iso下载的版本还是19045.2965，这个版本是2023-05-09上市的😅😅😅
+
+windows镜像有很多下载方法
+
+##### 微软官方下载
+
+[下载 Windows 10](https://www.microsoft.com/zh-cn/software-download/windows10)
+
+可以在win10下载页面下载Media Creation Tool工具来下载iso文件,但这玩意下载有点慢.
+
+这个和官网直接下载的iso半斤八两,应该是19045.3803.猜的，有兴趣的可以去看看
+
+当然也可以修改浏览器ua来直接下载iso文件.
+
+##### MSDN我告诉你
+
+微软开发者网络，是微软早期专为开发人员提供的一项服务，微软为MSDN订阅用户直接提供了Windows镜像ISO的下载链接。
+
+不同的订阅方式，微软向订阅者每年收取1000美元到6000美元的订阅费，
+
+而MSDN我告诉你（[https://msdn.itellyou.cn/](https://msdn.itellyou.cn/)）,该网站就收录了大量通过MSDN订阅下载的微软相关产品，包括Windows镜像。严格来说这个也是官网镜像。
+
+[NEXT, ITELLYOU](https://next.itellyou.cn/) 这是新网站.
+
+现在这个的最新的是9月的版本
+##### UUP专制ISO
+
+[uup.rg-adguard](https://uup.rg-adguard.net/index.php)
+
+[UUP dump](https://uupdump.net/)
+
+这个是从微软服务器下载文件,然后打包成iso文件
+
