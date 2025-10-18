@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "windows10停止支持.md",
+                "file": "dns和私有dns.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "windows10停止支持"
+              "title": "dns和私有dns"
             }
           }
         ],
@@ -188,9 +188,10 @@
   },
   "active": "bddfa7e9134bf7ac",
   "lastOpenFiles": [
-    "关于我的博客.md",
-    "Fuwari博客搭建.md",
     "windows10停止支持.md",
+    "dns和私有dns.md",
+    "Fuwari博客搭建.md",
+    "关于我的博客.md",
     "未命名.md",
     "2025-10-07.md"
   ]
